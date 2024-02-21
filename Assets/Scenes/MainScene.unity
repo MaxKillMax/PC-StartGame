@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -746,8 +746,9 @@ GameObject:
   - component: {fileID: 67389775}
   - component: {fileID: 67389774}
   - component: {fileID: 67389777}
+  - component: {fileID: 67389778}
   m_Layer: 5
-  m_Name: CharacteristicsPanel
+  m_Name: StatsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -786,12 +787,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b81ee539407423b9cf323f9417c40c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceText: {fileID: 2003776682}
-  _dexterityText: {fileID: 800063536}
-  _luckText: {fileID: 704024365}
-  _enduranceText: {fileID: 1907443638}
-  _expText: {fileID: 1898788863}
-  _healthText: {fileID: 1567982132}
+  _strengthText: {fileID: 2003776684}
+  _agilityText: {fileID: 800063538}
+  _luckyText: {fileID: 704024367}
+  _enduranceText: {fileID: 1907443640}
+  _expText: {fileID: 1898788865}
+  _healthPanel: {fileID: 67389778}
 --- !u!114 &67389775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,7 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -842,7 +843,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e8252c34a59424b8b98775a84f8338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  _color: {r: 1, g: 1, b: 1, a: 0.27450982}
+--- !u!114 &67389778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67389772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd4bc2e9ad3a6f4b976b45bc42b8562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1567982134}
+  _panel: {fileID: 835655475}
+  _colorChangeTime: 0.25
+  _decreaseColor: {r: 1, g: 0.26981127, b: 0.26981127, a: 0.33333334}
+  _increaseColor: {r: 0.27058825, g: 1, b: 0.27058825, a: 0.33333334}
 --- !u!1 &110963791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1055,7 +1073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24360899e19a00a4eac8a407063d9eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1042038984}
+  _inventory: {fileID: 1042038986}
   _elementPrefab: {fileID: -7694121971931728664, guid: d6ec1a6ef7e1dda40a1ffe2101bb00e9, type: 3}
   _itemsImages:
   - {fileID: 21300000, guid: d1e8ee8f8afa31846bca059e4034b9cf, type: 3}
@@ -1103,7 +1121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e8252c34a59424b8b98775a84f8338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  _color: {r: 1, g: 1, b: 1, a: 0.27450982}
 --- !u!1 &198705362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1194,7 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0748a093c640a78b6e03edf3150ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 653030894}
+  _text: {fileID: 653030896}
   _answersPanel: {fileID: 1757668568}
 --- !u!1 &275272152
 GameObject:
@@ -1209,6 +1227,7 @@ GameObject:
   - component: {fileID: 275272156}
   - component: {fileID: 275272155}
   - component: {fileID: 275272154}
+  - component: {fileID: 275272158}
   m_Layer: 5
   m_Name: LogText
   m_TagString: Untagged
@@ -1366,6 +1385,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275272152}
   m_CullTransparentMesh: 1
+--- !u!114 &275272158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275272152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 275272156}
+  _printCharDelayInMilliseconds: 9
+  _printCharDelay: 0.01
 --- !u!1 &276937101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1502,7 +1536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1672,7 +1706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1925,6 +1959,7 @@ GameObject:
   - component: {fileID: 653030893}
   - component: {fileID: 653030895}
   - component: {fileID: 653030894}
+  - component: {fileID: 653030896}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2048,6 +2083,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653030892}
   m_CullTransparentMesh: 1
+--- !u!114 &653030896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653030892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 653030894}
+  _printCharDelayInMilliseconds: 29
+  _printCharDelay: 0.03
 --- !u!1 &704024363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,8 +2109,9 @@ GameObject:
   - component: {fileID: 704024364}
   - component: {fileID: 704024366}
   - component: {fileID: 704024365}
+  - component: {fileID: 704024367}
   m_Layer: 5
-  m_Name: LuckText (TMP) (1)
+  m_Name: Lucky
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2182,6 +2233,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704024363}
   m_CullTransparentMesh: 1
+--- !u!114 &704024367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704024363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 704024365}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &800063534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,8 +2259,9 @@ GameObject:
   - component: {fileID: 800063535}
   - component: {fileID: 800063537}
   - component: {fileID: 800063536}
+  - component: {fileID: 800063538}
   m_Layer: 5
-  m_Name: DexterityText (TMP)
+  m_Name: Agility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2316,6 +2383,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800063534}
   m_CullTransparentMesh: 1
+--- !u!114 &800063538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800063534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 800063536}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &835655473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,7 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2556,6 +2638,7 @@ GameObject:
   - component: {fileID: 1042038985}
   - component: {fileID: 1042038984}
   - component: {fileID: 1042038986}
+  - component: {fileID: 1042038987}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2576,11 +2659,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 1042038986}
-  _characteristicNames:
-  - "\u0421\u0438\u043B\u0430"
-  - "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C"
-  - "\u0423\u0434\u0430\u0447\u0430"
-  - "\u0412\u044B\u043D\u043E\u0441\u043B\u0438\u0432\u043E\u0441\u0442\u044C"
+  _health: {fileID: 1042038987}
+  _stats:
+  - _type: 0
+    _value: 0
+  - _type: 1
+    _value: 0
+  - _type: 2
+    _value: 0
+  - _type: 3
+    _value: 0
 --- !u!4 &1042038985
 Transform:
   m_ObjectHideFlags: 0
@@ -2614,6 +2702,19 @@ MonoBehaviour:
   InventoryChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1042038987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042038983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad00fcc733382bc4ca6ee5cc8be8abd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _valuePerStat: 50
 --- !u!1 &1062753654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9162bed662ddf9449b0556aeafa25cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logText: {fileID: 275272156}
+  _text: {fileID: 275272158}
 --- !u!114 &1068228728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,7 +2959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.05882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.019607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2895,7 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e8252c34a59424b8b98775a84f8338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  _color: {r: 1, g: 1, b: 1, a: 0.27450982}
 --- !u!1 &1072574753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.27450982}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3514,8 +3615,9 @@ GameObject:
   - component: {fileID: 1567982131}
   - component: {fileID: 1567982133}
   - component: {fileID: 1567982132}
+  - component: {fileID: 1567982134}
   m_Layer: 5
-  m_Name: HealthText (TMP) (3)
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3637,6 +3739,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567982130}
   m_CullTransparentMesh: 1
+--- !u!114 &1567982134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567982130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1567982132}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &1615277279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4316,8 +4433,9 @@ GameObject:
   - component: {fileID: 1898788862}
   - component: {fileID: 1898788864}
   - component: {fileID: 1898788863}
+  - component: {fileID: 1898788865}
   m_Layer: 5
-  m_Name: ExpText (TMP)
+  m_Name: Exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4439,6 +4557,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898788861}
   m_CullTransparentMesh: 1
+--- !u!114 &1898788865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898788861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1898788863}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &1907443636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4450,8 +4583,9 @@ GameObject:
   - component: {fileID: 1907443637}
   - component: {fileID: 1907443639}
   - component: {fileID: 1907443638}
+  - component: {fileID: 1907443640}
   m_Layer: 5
-  m_Name: EnduranceText (TMP) (2)
+  m_Name: Endurance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4573,6 +4707,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907443636}
   m_CullTransparentMesh: 1
+--- !u!114 &1907443640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907443636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1907443638}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &1961998148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4835,8 +4984,9 @@ GameObject:
   - component: {fileID: 2003776681}
   - component: {fileID: 2003776683}
   - component: {fileID: 2003776682}
+  - component: {fileID: 2003776684}
   m_Layer: 5
-  m_Name: ForceText (TMP)
+  m_Name: Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4958,6 +5108,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003776680}
   m_CullTransparentMesh: 1
+--- !u!114 &2003776684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003776680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 2003776682}
+  _printCharDelayInMilliseconds: 19
+  _printCharDelay: 0.02
 --- !u!1 &2033359959
 GameObject:
   m_ObjectHideFlags: 0

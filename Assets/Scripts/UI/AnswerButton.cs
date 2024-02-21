@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using NaughtyAttributes;
 using SG.Dialogs;
 using SG.Utilities;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace SG.UI
 {
+    [RequireComponent(typeof(Button))]
     public class AnswerButton : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _text;
-        private Button _button;
+        [SerializeField] private TextPrinter _text;
+        [SerializeField, ReadOnly] private Button _button;
 
         private DialogVariant _variant;
         private Action _onCompleted;
 
-        private void Awake()
+#if UNITY_EDITOR
+        private void OnValidate()
         {
-            _button = GetComponent<Button>();
-            _button.onClick.AddListener(Click);
+            if (!_button)
+                _button = GetComponent<Button>();
+        }
+#endif
+
+        public void CancelInit()
+        {
+            _text.Cancel();
         }
 
-        public bool Init(int number, DialogVariant variant, Action onCompleted)
+        public async Task<bool> InitAsync(int number, DialogVariant variant, Action onCompleted)
         {
-            _text.text = $"[{number}] {variant.Text}";
-
             _variant = variant;
             _onCompleted = onCompleted;
 
@@ -39,6 +46,10 @@ namespace SG.UI
                     state = false;
             }
 
+            if (state)
+                await _text.SetTextAsync($"[{number}] {variant.Text}");
+
+            _button.onClick.AddListener(Click);
             return state;
         }
 

@@ -3,6 +3,7 @@ using System.Linq;
 using SG.Dialogs;
 using SG.Locations;
 using SG.Parameters;
+using SG.Players;
 using SG.UI;
 using UnityEngine;
 
@@ -13,15 +14,16 @@ namespace SG
         [SerializeField] private DialogPanel _dialogPanel;
         [SerializeField] private LocationBuilder _locationBuilder;
 
-        //private readonly List<int> _savedAnswersId = new();
+        public static Player Player { get; private set; }
 
         private List<Dialog> _dialogs;
 
         private Dialog _dialog;
         private DialogNode _node;
 
-        public void Init(List<Dialog> dialogs)
+        public void Init(List<Dialog> dialogs, Player player)
         {
+            Player = player;
             _dialogs = dialogs;
             StartGame();
         }
@@ -54,10 +56,10 @@ namespace SG
             GameLog.Log(_node.Text);
             Parameter.EnableNode(_node);
 
-            _dialogPanel.Init(_node, CompleteDialog);
+            _dialogPanel.InitAsync(_node, CompleteDialog);
         }
 
-        // Нечего писать в Win и Lose. Все сцены, где можно проиграть или победить итак прямо указываются в тексте
+        // Нечего писать в Win и Lose. Все сцены, где можно проиграть или победить итак прямо указываются в тексте панели диалога
 
         public void Win()
         {

@@ -7,7 +7,7 @@ namespace SG
 {
     public class GameBootstrapper : MonoBehaviour
     {
-        [SerializeField] private CharacteristicsPanel _characteristicsPanel;
+        [SerializeField] private StatsPanel _characteristicsPanel;
         [SerializeField] private GameData _gameData;
         [SerializeField] private Game _game;
 
@@ -20,13 +20,13 @@ namespace SG
 
         private void Start()
         {
-            _game.Init(_gameData.Dialogs);
+            _game.Init(_gameData.Dialogs, _player);
 
             _player.Init(_gameData.PlayerInfo);
-            _player.OnHealthEmptyOut += _game.Lose;
-            _player.OnHealthEmptyOut += _game.DisableDialogPanel;
+            _player.Health.OnEmptyOut += _game.Lose;
+            _player.Health.OnEmptyOut += _game.DisableDialogPanel;
 
-            _characteristicsPanel.Init(_player);
+            _characteristicsPanel.Init(_player.Stats, _player.Health);
         }
     }
 }

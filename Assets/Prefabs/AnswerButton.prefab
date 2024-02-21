@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bd41dd85d343aa8eb4fdb4ea4970cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 6459924136674066291}
+  _text: {fileID: 1213961922294866039}
+  _button: {fileID: 8667836236419453902}
 --- !u!114 &4217279166745937704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +150,8 @@ GameObject:
   - component: {fileID: 555064340687292763}
   - component: {fileID: 6459924136674066291}
   - component: {fileID: 5081763750919632411}
+  - component: {fileID: 1213961922294866039}
+  - component: {fileID: 1793425732956032126}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -172,7 +175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32.37, y: 0}
+  m_AnchoredPosition: {x: 641.84, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &555064340687292763
@@ -203,7 +206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text
+  m_text: QWERTYUIOPASDFGHJKLZXCVBNM<>?:"{}|qwertyuiop[]\asdfghjkl;'zxcvbnm,./
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -286,3 +289,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &1213961922294866039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495769869887910142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f04aa1f77d3af439930e30e1a40c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 6459924136674066291}
+  _printCharDelayInMilliseconds: 14
+  _printCharDelay: 0.015
+--- !u!114 &1793425732956032126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495769869887910142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 0
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1

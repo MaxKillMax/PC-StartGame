@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
-namespace Interactable
+namespace SG.Interactables
 {
+    [RequireComponent(typeof(Button))]
     public abstract class Interactive : MonoBehaviour
     {
-        private void OnMouseUp()
+        private void Awake()
         {
-            DoAction();
+            GetComponent<Button>().onClick.AddListener(DoAction);
         }
 
         protected abstract void DoAction();

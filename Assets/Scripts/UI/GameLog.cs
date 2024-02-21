@@ -1,20 +1,17 @@
-using TMPro;
+using SG.UI;
 using UnityEngine;
 
 public class GameLog : MonoBehaviour
 {
     private static GameLog Instance;
 
-    [SerializeField] private TMP_Text _logText;
+    [SerializeField] private TextPrinter _text;
 
     private void Awake()
     {
         Instance = this;
-        _logText.text = string.Empty;
+        _text.SetText(string.Empty);
     }
 
-    public static void Log(string text)
-    {
-        Instance._logText.text += $"- {text} \n";
-    }
+    public static void Log(string text) => _ = Instance._text.AddTextAsync($"- {text} \n");
 }

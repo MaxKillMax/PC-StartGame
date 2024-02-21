@@ -64,7 +64,11 @@ namespace SG.Utilities
 
         public void EnableParameter(string parameterName) => Parameter.Enable(parameterName);
 
-        public void RemoveHealth(string count) => _player.RemoveHealth(Convert.ToInt32(count));
+        public void AddStat(string id, string value) => _player.AddStatValue((StatType)(Convert.ToInt32(id)), Convert.ToInt32(value));
+
+        public void AddHealth(string count) => _player.Health.Add(Convert.ToInt32(count));
+
+        public void RemoveHealth(string count) => _player.Health.Remove(Convert.ToInt32(count));
 
         #endregion
 
@@ -75,6 +79,12 @@ namespace SG.Utilities
         public bool NotStateOf(string parameterName) => !Parameter.StateOf(parameterName);
 
         public bool HasItemInInventoryAt(string id) => _player.Inventory.HasItemInInventoryAt(Convert.ToInt32(id));
+
+        public bool IsStatMore(int id, int value) => _player.IsStatMore((StatType)id, value);
+
+        public bool IsStatLess(int id, int value) => _player.IsStatLess((StatType)id, value);
+
+        public bool IsStatEqual(int id, int value) => _player.IsStatEqual((StatType)id, value);
 
         #endregion
     }

@@ -2,12 +2,13 @@
 
 namespace SG.Interactables
 {
-    public class AddItemIntaractive : Interactive
+    public class LogInteractive : Interactive
     {
-        [SerializeField] private int _itemId, _count, _exp;
+        [SerializeField] private string _log;
 
         protected override void DoAction()
         {
+            GameLog.Log(_log);
         }
     }
 }

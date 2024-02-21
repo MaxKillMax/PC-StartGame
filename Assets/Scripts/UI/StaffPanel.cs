@@ -6,7 +6,7 @@ namespace SG.UI
 {
     public class StaffPanel : MonoBehaviour
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private Inventory _inventory;
         [SerializeField] private StaffElement _elementPrefab;
         [SerializeField] private Sprite[] _itemsImages;
 
@@ -14,8 +14,8 @@ namespace SG.UI
 
         private void Awake()
         {
-            _player.Inventory.InventoryInited.AddListener(Init);
-            _player.Inventory.InventoryChanged.AddListener(OnChangeInventory);
+            _inventory.InventoryInited.AddListener(Init);
+            _inventory.InventoryChanged.AddListener(OnChangeInventory);
         }
 
         public void Init(List<int> staffStates)
@@ -24,10 +24,13 @@ namespace SG.UI
 
             for (int i = 0; i < staffStates.Count; i++)
             {
-                var newElement = Instantiate(_elementPrefab, transform);
-                _elements.Add(newElement);
-                newElement.Init(_itemsImages[_elements.IndexOf(newElement)]);
-                newElement.ChangeCollect(staffStates[i]);
+                int index = i;
+
+                StaffElement element = Instantiate(_elementPrefab, transform);
+                _elements.Add(element);
+
+                element.Init(_itemsImages[_elements.IndexOf(element)], () => _inventory.Use(index));
+                element.ChangeCollect(staffStates[i]);
             }
         }
 

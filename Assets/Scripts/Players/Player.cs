@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
 
 namespace SG.Players
@@ -7,36 +6,33 @@ namespace SG.Players
     public class Player : MonoBehaviour
     {
         [SerializeField] private Inventory _inventory;
-        [SerializeField] private string[] _characteristicNames;
+        [SerializeField] private Health _health;
 
-        public List<int> Characteristics { get; private set; }
+        [SerializeField] private Stat[] _stats;
+
+        public Stat[] Stats => _stats;
         public Inventory Inventory => _inventory;
-
-        public int MaxHealth => 100;
-        public int Health { get; private set; }
-
-        public event Action OnHealthEmptyOut;
-        public event Action OnHealthChanged;
+        public Health Health => _health;
 
         public void Init(PlayerInfo playerInfo)
         {
-            Health = MaxHealth;
+            for (int i = 0; i < _stats.Length && i < playerInfo.Stats.Count; i++)
+                _stats[i].Value = playerInfo.Stats[i];
 
-            Characteristics = playerInfo.Stats;
             _inventory.Init(playerInfo.Staff);
+            _health.Init(GetStat(StatType.Endurance));
         }
 
-        public void RemoveHealth(int count)
-        {
-            Health -= count;
+        public Stat GetStat(StatType type) => _stats.FirstOrDefault((s) => s.Type == type);
 
-            if (Health < 0)
-                Health = 0;
+        public int GetStatValue(StatType type) => _stats.FirstOrDefault((s) => s.Type == type).Value;
 
-            OnHealthChanged?.Invoke();
+        public void AddStatValue(StatType type, int value) => _stats.FirstOrDefault((s) => s.Type == type).Value += value;
 
-            if (Health == 0)
-                OnHealthEmptyOut?.Invoke();
-        }
+        public bool IsStatMore(StatType type, int value) => _stats.FirstOrDefault((s) => s.Type == type).Value > value;
+
+        public bool IsStatLess(StatType type, int value) => _stats.FirstOrDefault((s) => s.Type == type).Value < value;
+
+        public bool IsStatEqual(StatType type, int value) => _stats.FirstOrDefault((s) => s.Type == type).Value == value;
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using SG.Items;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,6 +20,9 @@ namespace SG.Players
 
         public void ChangeItemInInventoryAt(int id, int count)
         {
+            if (count < 0)
+                count = 0;
+
             Items[id] = count;
             InventoryChanged?.Invoke(id, count);
         }
@@ -31,11 +35,16 @@ namespace SG.Players
 
         public void DecreaseItemInInventoryAt(int id)
         {
+            if (Items[id] == 0)
+                return;
+
             Items[id]--;
             InventoryChanged?.Invoke(id, Items[id]);
         }
 
         public bool HasItemInInventoryAt(int id) => Items[id] > 0;
+
+        public void Use(int id) => Item.TryUse(id);
     }
 }
 
