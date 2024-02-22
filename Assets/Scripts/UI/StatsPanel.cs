@@ -21,7 +21,7 @@ namespace SG.UI
         {
             _stats = stats;
 
-            _ = _expText.SetTextAsync(0.ToString());
+            _ = _expText.StartTextSetting(0.ToString());
             _healthPanel.Init(health);
 
             if (_stats == null)
@@ -35,7 +35,7 @@ namespace SG.UI
 
         private void InitStat(Stat stat, TextPrinter text, Action<int, int> onUpdated)
         {
-            _ = text.SetTextAsync(stat.Value.ToString());
+            _ = text.StartTextSetting(stat.Value.ToString());
             stat.OnValueUpdated += onUpdated;
         }
 
@@ -50,12 +50,12 @@ namespace SG.UI
             _stats.First(s => s.Type == StatType.Endurance).OnValueUpdated -= UpdateEndurance;
         }
 
-        private void UpdateStrength(int pastValue, int newValue) => _ = _strengthText.SetTextAsync(newValue.ToString());
+        private void UpdateStrength(int pastValue, int newValue) => _ = _strengthText.StartTextSetting(newValue.ToString());
 
-        private void UpdateAgility(int pastValue, int newValue) => _ = _agilityText.SetTextAsync(newValue.ToString());
+        private void UpdateAgility(int pastValue, int newValue) => _ = _agilityText.StartTextSetting(newValue.ToString());
 
-        private void UpdateLucky(int pastValue, int newValue) => _ = _luckyText.SetTextAsync(newValue.ToString());
+        private void UpdateLucky(int pastValue, int newValue) => _ = _luckyText.StartTextSetting(newValue.ToString());
 
-        private void UpdateEndurance(int pastValue, int newValue) => _ = _enduranceText.SetTextAsync(newValue.ToString());
+        private void UpdateEndurance(int pastValue, int newValue) => _ = _enduranceText.StartTextSetting(newValue.ToString());
     }
 }

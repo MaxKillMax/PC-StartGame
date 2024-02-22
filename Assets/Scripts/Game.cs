@@ -56,7 +56,7 @@ namespace SG
             GameLog.Log(_node.Text);
             Parameter.EnableNode(_node);
 
-            _dialogPanel.InitAsync(_node, CompleteDialog);
+            _dialogPanel.Init(_node, CompleteDialog);
         }
 
         // Нечего писать в Win и Lose. Все сцены, где можно проиграть или победить итак прямо указываются в тексте панели диалога

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
-using System.Threading.Tasks;
 using NaughtyAttributes;
 using SG.Dialogs;
 using SG.Utilities;
@@ -18,6 +18,8 @@ namespace SG.UI
         private DialogVariant _variant;
         private Action _onCompleted;
 
+        public bool IsInited { get; private set; }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {
@@ -26,12 +28,13 @@ namespace SG.UI
         }
 #endif
 
-        public void CancelInit()
+        public Coroutine Init(int number, DialogVariant variant, Action onCompleted)
         {
-            _text.Cancel();
+            StopAllCoroutines();
+            return StartCoroutine(WaitForInit(number, variant, onCompleted));
         }
 
-        public async Task<bool> InitAsync(int number, DialogVariant variant, Action onCompleted)
+        private IEnumerator WaitForInit(int number, DialogVariant variant, Action onCompleted)
         {
             _variant = variant;
             _onCompleted = onCompleted;
@@ -47,10 +50,10 @@ namespace SG.UI
             }
 
             if (state)
-                await _text.SetTextAsync($"[{number}] {variant.Text}");
+                yield return _text.StartTextSetting($"[{number}] {variant.Text}");
 
             _button.onClick.AddListener(Click);
-            return state;
+            IsInited = state;
         }
 
         public void Click()

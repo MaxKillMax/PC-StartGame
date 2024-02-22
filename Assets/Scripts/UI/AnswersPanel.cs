@@ -1,7 +1,6 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using SG.Dialogs;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ namespace SG.UI
     {
         [SerializeField] private AnswerButton _answerButtonPrefab;
 
-        private CancellationTokenSource _cancellationTokenSource;
         private Transform _transform;
 
         public List<AnswerButton> AnswerButtons { get; } = new();
@@ -26,39 +24,35 @@ namespace SG.UI
             _transform = null;
         }
 
-        public async void InitAsync(List<DialogVariant> variants, Action<DialogVariant> onCompleted)
+        public Coroutine Init(List<DialogVariant> variants, Action<DialogVariant> onCompleted)
         {
             Clear();
+            StopAllCoroutines();
+            return StartCoroutine(WaitForInit(variants, onCompleted));
+        }
 
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource = new();
-
+        private IEnumerator WaitForInit(List<DialogVariant> variants, Action<DialogVariant> onCompleted)
+        {
             foreach (DialogVariant variant in variants)
             {
                 if (_transform == null)
-                    return;
+                    yield break;
 
-                await InitVariantAsync(variant, onCompleted, _cancellationTokenSource.Token);
+                yield return StartCoroutine(WaitForButtonInit(variant, onCompleted));
             }
-
-            _cancellationTokenSource.Dispose();
-            _cancellationTokenSource = null;
         }
 
-        private async Task InitVariantAsync(DialogVariant variant, Action<DialogVariant> onCompleted, CancellationToken token)
+        private IEnumerator WaitForButtonInit(DialogVariant variant, Action<DialogVariant> onCompleted)
         {
             AnswerButton button = Instantiate(_answerButtonPrefab, _transform);
+            yield return button.Init(AnswerButtons.Count + 1, variant, () => onCompleted?.Invoke(variant));
 
-            token.Register(button.CancelInit);
-            bool inited = await button.InitAsync(AnswerButtons.Count + 1, variant, () => onCompleted?.Invoke(variant));
-
-            if (token.IsCancellationRequested)
-                return;
-
-            if (inited)
+            if (button.IsInited)
                 AnswerButtons.Add(button);
             else
                 Destroy(button.gameObject);
+
+            yield break;
         }
 
         public void Clear()

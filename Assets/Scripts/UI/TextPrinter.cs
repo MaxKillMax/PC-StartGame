@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -10,12 +9,9 @@ namespace SG.UI
     public class TextPrinter : MonoBehaviour
     {
         [SerializeField, ReadOnly] private TMP_Text _text;
-        [SerializeField, ReadOnly] private int _printCharDelayInMilliseconds;
         [SerializeField] private float _printCharDelay = 0.02f;
 
-        private CancellationTokenSource _cancellationTokenSource;
-        private Task _task;
-
+        private Coroutine _coroutine;
         private string _result;
 
         public bool Canceled { get; private set; }
@@ -26,8 +22,6 @@ namespace SG.UI
         {
             if (!_text)
                 _text = GetComponent<TMP_Text>();
-
-            _printCharDelayInMilliseconds = (int)(_printCharDelay * 1000);
         }
 #endif
 
@@ -36,71 +30,56 @@ namespace SG.UI
             _text.text = value;
         }
 
-        public void Cancel()
+        private void Cancel()
         {
-            Canceled = true;
-            _cancellationTokenSource?.Cancel();
-        }
-
-        public async Task AddTextAsync(string value)
-        {
-            await PlayAnimationTaskAsync(value, false);
-        }
-
-        public async Task SetTextAsync(string value)
-        {
-            if (_text.text == value)
+            if (_coroutine == null)
                 return;
 
-            await PlayAnimationTaskAsync(value, true);
+            Canceled = true;
+            StopCoroutine(_coroutine);
+
+            _coroutine = null;
+            _text.text = _result;
         }
 
-        private async Task PlayAnimationTaskAsync(string value, bool resetText)
+        public Coroutine StartTextAdding(string value) => StartCoroutine(WaitForSingleAnimationPlaying(value, false));
+
+        public Coroutine StartTextSetting(string value) => _text.text == value ? null : StartCoroutine(WaitForSingleAnimationPlaying(value, true));
+
+        private IEnumerator WaitForSingleAnimationPlaying(string value, bool resetText)
         {
+            Cancel();
             Canceled = false;
 
-            if (_cancellationTokenSource != null)
+            if (_coroutine != null)
             {
-                _cancellationTokenSource.Cancel();
-                await _task;
+                StopCoroutine(_coroutine);
+                yield return _coroutine;
+                _text.text = _result;
             }
-
-            _cancellationTokenSource = new();
-
-            _text.text = _result;
 
             if (resetText)
                 _text.text = string.Empty;
 
-            _result = _text.text + value;
-
-            _task = PlayAnimationAsync(value, _cancellationTokenSource.Token);
-            await _task;
-
-            _cancellationTokenSource.Dispose();
-            _cancellationTokenSource = null;
-
-            _text.text = _result;
+            _coroutine = StartCoroutine(WaitForAnimationPlaying(value));
+            yield return _coroutine;
         }
 
-        private async Task PlayAnimationAsync(string value, CancellationToken token)
+        private IEnumerator WaitForAnimationPlaying(string value)
         {
+            _result = _text.text + value;
+
             for (int i = 0; i < value.Length; i++)
             {
                 if (_text == null)
-                    return;
+                    break;
 
                 _text.text += value[i];
-
-                try
-                {
-                    await Task.Delay(_printCharDelayInMilliseconds, token);
-                }
-                catch
-                {
-                    return;
-                }
+                yield return new WaitForSeconds(_printCharDelay);
             }
+
+            _coroutine = null;
+            _text.text = _result;
         }
     }
 }

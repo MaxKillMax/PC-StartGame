@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using SG.Dialogs;
 using UnityEngine;
 
@@ -9,17 +10,21 @@ namespace SG.UI
         [SerializeField] private TextPrinter _text;
         [SerializeField] private AnswersPanel _answersPanel;
 
-        public async void InitAsync(DialogNode dialog, Action<DialogVariant> onCompleted)
+        public void Init(DialogNode dialog, Action<DialogVariant> onCompleted)
+        {
+            StopAllCoroutines();
+            StartCoroutine(WaitForInit(dialog, onCompleted));
+        }
+
+        private IEnumerator WaitForInit(DialogNode dialog, Action<DialogVariant> onCompleted)
         {
             _answersPanel.Clear();
-
-            _text.Cancel();
-            await _text.SetTextAsync(dialog.Text);
+            yield return _text.StartTextSetting(dialog.Text);
 
             if (_text == null || _text.Canceled)
-                return;
+                yield break;
 
-            _answersPanel.InitAsync(dialog.Variants, onCompleted);
+            yield return _answersPanel.Init(dialog.Variants, onCompleted);
         }
     }
 }

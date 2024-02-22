@@ -13,5 +13,5 @@ public class GameLog : MonoBehaviour
         _text.SetText(string.Empty);
     }
 
-    public static void Log(string text) => _ = Instance._text.AddTextAsync($"- {text} \n");
+    public static void Log(string text) => _ = Instance._text.StartTextAdding($"- {text} \n");
 }

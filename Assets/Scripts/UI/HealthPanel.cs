@@ -63,6 +63,6 @@ namespace SG.UI
             UpdateHealth();
         }
 
-        private void UpdateHealth() => _ = _text.SetTextAsync($"{_health.Value}/{_health.MaxValue}");
+        private void UpdateHealth() => _ = _text.StartTextSetting($"{_health.Value}/{_health.MaxValue}");
     }
 }
