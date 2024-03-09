@@ -10,13 +10,19 @@ namespace SG.UI
         [SerializeField] private TextPrinter _text;
         [SerializeField] private AnswersPanel _answersPanel;
 
-        public void Init(DialogNode dialog, Action<DialogVariant> onCompleted)
+        public void Clear()
         {
-            StopAllCoroutines();
-            StartCoroutine(WaitForInit(dialog, onCompleted));
+            _text.SetText(string.Empty);
+            _answersPanel.Clear();
         }
 
-        private IEnumerator WaitForInit(DialogNode dialog, Action<DialogVariant> onCompleted)
+        public Coroutine Init(DialogNode dialog, Action<DialogVariant> onVariantCompleted = null)
+        {
+            StopAllCoroutines();
+            return StartCoroutine(WaitForInit(dialog, onVariantCompleted));
+        }
+
+        private IEnumerator WaitForInit(DialogNode dialog, Action<DialogVariant> onVariantCompleted)
         {
             _answersPanel.Clear();
             yield return _text.StartTextSetting(dialog.Text);
@@ -24,7 +30,7 @@ namespace SG.UI
             if (_text == null || _text.Canceled)
                 yield break;
 
-            yield return _answersPanel.Init(dialog.Variants, onCompleted);
+            yield return _answersPanel.Init(dialog.Variants, onVariantCompleted);
         }
     }
 }

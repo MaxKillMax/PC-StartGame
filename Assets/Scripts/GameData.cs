@@ -4,7 +4,7 @@ using System.IO;
 using NaughtyAttributes;
 using Newtonsoft.Json;
 using SG.Dialogs;
-using SG.Players;
+using SG.Units.Players;
 using UnityEditor;
 using UnityEngine;
 

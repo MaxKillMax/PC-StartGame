@@ -3,9 +3,10 @@ using System.Linq;
 using SG.Dialogs;
 using SG.Locations;
 using SG.Parameters;
-using SG.Players;
+using SG.Units.Players;
 using SG.UI;
 using UnityEngine;
+using SG.Fights;
 
 namespace SG
 {
@@ -20,17 +21,27 @@ namespace SG
 
         private Dialog _dialog;
         private DialogNode _node;
+        private int _id;
 
         public void Init(List<Dialog> dialogs, Player player)
         {
             Player = player;
             _dialogs = dialogs;
             StartGame();
+
+            Fight.OnEnded += OnFightEnded;
+            Fight.OnFailed += Lose;
         }
 
         public void StartGame()
         {
             GoToDialog(0);
+        }
+
+        private void OnFightEnded()
+        {
+            Player.Experience.Value += Experience.MAX_VALUE;
+            GoToDialog(_id);
         }
 
         public void CompleteDialog(DialogVariant variant)
@@ -43,6 +54,11 @@ namespace SG
 
         public void GoToDialog(int id)
         {
+            _id = id;
+
+            if (Fight.InProcess)
+                return;
+
             Dialog dialog = _dialogs.FirstOrDefault(n => n.Nodes.FirstOrDefault(d => d.Id == id) != null);
 
             if (dialog == null)

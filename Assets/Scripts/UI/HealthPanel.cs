@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using DG.Tweening;
-using SG.Players;
+using SG.Units.Players;
 using UnityEngine;
 using UnityEngine.UI;
 

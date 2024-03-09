@@ -1,5 +1,6 @@
 using SG.UI;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class GameLog : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameLog : MonoBehaviour
 
     private void Awake()
     {
+        Assert.IsNull(Instance);
+
         Instance = this;
         _text.SetText(string.Empty);
     }

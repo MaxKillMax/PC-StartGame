@@ -24,28 +24,28 @@ namespace SG.UI
             _transform = null;
         }
 
-        public Coroutine Init(List<DialogVariant> variants, Action<DialogVariant> onCompleted)
+        public Coroutine Init(List<DialogVariant> variants, Action<DialogVariant> onVariantCompleted)
         {
             Clear();
             StopAllCoroutines();
-            return StartCoroutine(WaitForInit(variants, onCompleted));
+            return StartCoroutine(WaitForInit(variants, onVariantCompleted));
         }
 
-        private IEnumerator WaitForInit(List<DialogVariant> variants, Action<DialogVariant> onCompleted)
+        private IEnumerator WaitForInit(List<DialogVariant> variants, Action<DialogVariant> onVariantCompleted)
         {
             foreach (DialogVariant variant in variants)
             {
                 if (_transform == null)
                     yield break;
 
-                yield return StartCoroutine(WaitForButtonInit(variant, onCompleted));
+                yield return StartCoroutine(WaitForButtonInit(variant, onVariantCompleted));
             }
         }
 
-        private IEnumerator WaitForButtonInit(DialogVariant variant, Action<DialogVariant> onCompleted)
+        private IEnumerator WaitForButtonInit(DialogVariant variant, Action<DialogVariant> onVariantCompleted)
         {
             AnswerButton button = Instantiate(_answerButtonPrefab, _transform);
-            yield return button.Init(AnswerButtons.Count + 1, variant, () => onCompleted?.Invoke(variant));
+            yield return button.Init(AnswerButtons.Count + 1, variant, () => onVariantCompleted?.Invoke(variant));
 
             if (button.IsInited)
                 AnswerButtons.Add(button);

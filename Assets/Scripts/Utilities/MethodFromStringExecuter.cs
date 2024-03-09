@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Reflection;
+using SG.Fights;
 using SG.Parameters;
-using SG.Players;
+using SG.Units;
+using SG.Units.Players;
 
 namespace SG.Utilities
 {
@@ -50,6 +52,9 @@ namespace SG.Utilities
 
         #region Actions
 
+        public void StartFight(string name, string id, string strength, string agility, string lucky, string endurance) 
+            => Fight.Start(_player, Unit.Convert(name, Convert.ToInt32(id), Convert.ToInt32(strength), Convert.ToInt32(agility), Convert.ToInt32(lucky), Convert.ToInt32(endurance))); 
+
         public void ChangeItemInInventoryAt(string id, string count) => _player.Inventory.ChangeItemInInventoryAt(Convert.ToInt32(id), Convert.ToInt32(count));
 
         public void IncreaseItemInInventoryAt(string id) => _player.Inventory.IncreaseItemInInventoryAt(Convert.ToInt32(id));
@@ -69,6 +74,8 @@ namespace SG.Utilities
         public void AddHealth(string count) => _player.Health.Add(Convert.ToInt32(count));
 
         public void RemoveHealth(string count) => _player.Health.Remove(Convert.ToInt32(count));
+
+        public void AddExperience(string count) => _player.Experience.Value += Convert.ToInt32(count);
 
         #endregion
 

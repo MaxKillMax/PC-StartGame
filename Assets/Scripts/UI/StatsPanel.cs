@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using SG.Players;
+using SG.Units.Players;
 using UnityEngine;
 
 namespace SG.UI
@@ -14,14 +14,14 @@ namespace SG.UI
         [SerializeField] private TextPrinter _luckyText;
         [SerializeField] private TextPrinter _enduranceText;
 
-        [SerializeField] private TextPrinter _expText;
+        [SerializeField] private ExperiencePanel _experiencePanel;
         [SerializeField] private HealthPanel _healthPanel;
 
-        public void Init(Stat[] stats, Health health)
+        public void Init(Stat[] stats, Experience experience, Action<StatType, int> addStatAction, Health health)
         {
             _stats = stats;
 
-            _ = _expText.StartTextSetting(0.ToString());
+            _experiencePanel.Init(experience, addStatAction);
             _healthPanel.Init(health);
 
             if (_stats == null)

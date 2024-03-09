@@ -1,4 +1,4 @@
-using SG.Players;
+using SG.Units.Players;
 using SG.UI;
 using SG.Utilities;
 using UnityEngine;
@@ -26,7 +26,7 @@ namespace SG
             _player.Health.OnEmptyOut += _game.Lose;
             _player.Health.OnEmptyOut += _game.DisableDialogPanel;
 
-            _characteristicsPanel.Init(_player.Stats, _player.Health);
+            _characteristicsPanel.Init(_player.Stats, _player.Experience, _player.AddStatValue, _player.Health);
         }
     }
 }
